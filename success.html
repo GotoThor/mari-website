@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Willkommen bei Mari – Telequest</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    background:#f6f7fb;color:#0d1220;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;max-width:460px;width:100%;border-radius:24px;padding:44px 36px;text-align:center;
+    box-shadow:0 20px 50px -20px rgba(23,26,60,.28)}
+  .check{width:82px;height:82px;border-radius:50%;background:#e6f7ef;color:#12a56a;display:flex;align-items:center;
+    justify-content:center;margin:0 auto 22px;font-size:42px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  p{color:#4a5468;font-size:16px;margin-bottom:22px;line-height:1.6}
+  .fwd{background:#f6f7fb;border:1px dashed #3b3ff0;border-radius:14px;padding:18px;margin-bottom:24px}
+  .fwd span{font-size:12px;color:#4a5468;display:block;margin-bottom:5px}
+  .fwd b{font-size:26px;letter-spacing:1px;color:#2422c7}
+  a.btn{display:inline-block;background:#3b3ff0;color:#fff;text-decoration:none;font-weight:600;font-size:16px;
+    padding:15px 28px;border-radius:13px}
+  .muted{font-size:13px;color:#9aa1b4;margin-top:18px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="check">✓</div>
+    <h1 id="title">Willkommen bei Mari!</h1>
+    <p id="sub">Deine Anmeldung war erfolgreich. Leite deine Geschäftsnummer jetzt auf deine persönliche Telequest-Nummer um – ab sofort bleibt kein Anruf mehr liegen.</p>
+    <div class="fwd"><span>Deine Zielnummer zum Umleiten</span><b>0720 40 50 60</b></div>
+    <a class="btn" href="/">Zum Dashboard →</a>
+    <p class="muted" id="meta"></p>
+  </div>
+<script>
+  const id=new URLSearchParams(location.search).get("session_id");
+  if(id){
+    fetch("/api/session-status?id="+id).then(r=>r.json()).then(d=>{
+      if(d.voice) document.getElementById("title").textContent="Willkommen bei "+d.voice+"!";
+      if(d.email) document.getElementById("meta").textContent="Bestätigung an "+d.email;
+    }).catch(()=>{});
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mari aktivieren – telequest</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="In 3 Schritten live: Nummer eingeben, Stimme wählen, Mari geht ab sofort für dich ran. 7 Tage gratis.">
+<style>
+  :root{--brand:#2f7bf0;--brand-deep:#1f5fd0;--ink:#0d1220;--ink-soft:#5a6478;--line:#e6e9f0;--teal:#5ef0d0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;color:#eaeff8;min-height:100vh;
+    background:radial-gradient(130% 100% at 50% -8%,#212b41,#0b0f1a 60%);display:flex;flex-direction:column;align-items:center;
+    padding:34px 18px 46px}
+  body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(120,150,200,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(120,150,200,.06) 1px,transparent 1px);background-size:42px 42px}
+
+  /* BRAND */
+  .brand{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:340px;width:100%;margin-bottom:26px}
+  .brand:before{content:"";position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:150%;height:180%;
+    background:radial-gradient(58% 52% at 50% 42%,#0d1320 0%,rgba(13,19,32,.7) 46%,transparent 74%);pointer-events:none}
+  .b-wm{width:100%;max-width:300px;display:block;position:relative;z-index:2}
+  .b-reflect{opacity:.74;transform:scaleY(-1);margin-top:-3px;height:44px;overflow:visible;position:relative;z-index:1;
+    -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,.78) 45%,transparent 92%);
+    mask-image:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,.78) 45%,transparent 92%)}
+  .b-reflect svg{width:100%;max-width:300px;display:block}
+  .b-wave{position:relative;margin-top:6px;height:18px;display:flex;align-items:flex-end;justify-content:center;gap:3px;z-index:3}
+  .b-bar{width:2.5px;border-radius:2px;background:linear-gradient(to top,#2f7bf0,#5ef0d0);box-shadow:0 0 5px rgba(94,240,208,.5);transform-origin:bottom}
+  .b-tag{margin-top:11px;font-size:11px;letter-spacing:4px;color:#8b97ad}
+  .chrome{background:linear-gradient(180deg,#f2f6fc 0%,#9fb2ca 14%,#ffffff 33%,#b4c1d3 47%,#6b7b93 50%,#26324c 51.5%,#1c2740 53%,#6a7c98 64%,#ccd8e6 83%,#eef3fb 100%);background-size:100% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mshine 6s ease-in-out infinite alternate}
+  .rosso{background:linear-gradient(180deg,#ff5a46 0%,#c21206 14%,#ff3322 32%,#9c0d02 47%,#520702 50%,#200402 51.5%,#120101 53%,#720a02 64%,#cc1408 83%,#ff4d3a 100%);background-size:100% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mshine 6s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(212,0,0,.4))}
+  @keyframes mshine{0%{background-position:50% 0%}100%{background-position:50% 100%}}
+  .ai{color:#1ecb7b;text-shadow:0 0 12px rgba(30,203,123,.5)}
+  .flag{width:15px;height:10px;border-radius:2px;display:inline-block;box-shadow:0 0 0 1px rgba(255,255,255,.2);background:linear-gradient(#ed2939 0 33.33%,#fff 33.33% 66.66%,#ed2939 66.66% 100%)}
+  .mari-lock{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .mari-ow{position:relative;width:88px;height:88px;flex-shrink:0}
+  .mari-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(30,203,123,.5);animation:mping 3s ease-out infinite}
+  .mari-ring.r2{animation-delay:1.5s}
+  @keyframes mping{0%{transform:scale(.82);opacity:.5}80%,100%{transform:scale(1.35);opacity:0}}
+  .mari-orb{position:absolute;inset:9px;border-radius:50%;overflow:hidden;background:linear-gradient(150deg,#f4f7fb 0%,#aab2c2 18%,#ffffff 34%,#8790a2 50%,#454c5c 52%,#7a8496 66%,#cfd5df 84%,#eef2f7 100%);background-size:220% 220%;animation:morb 6.5s ease-in-out infinite alternate;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 22px -8px rgba(0,0,0,.55),inset 0 2px 5px rgba(255,255,255,.6),inset 0 -5px 10px rgba(0,0,0,.28)}
+  @keyframes morb{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+  .mari-orb::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.55),transparent 46%)}
+  .mari-vw{display:flex;align-items:center;gap:2.5px;height:26px;position:relative;z-index:2}
+  .mari-vw i{width:3px;border-radius:3px;background:#1ecb7b;box-shadow:0 0 5px rgba(30,203,123,.7);transform-origin:center;height:6px;animation:meq .9s ease-in-out infinite}
+  .mari-vw i:nth-child(2){animation-delay:.15s}.mari-vw i:nth-child(3){animation-delay:.3s}.mari-vw i:nth-child(4){animation-delay:.2s}.mari-vw i:nth-child(5){animation-delay:.1s}
+  @keyframes meq{0%,100%{height:6px}50%{height:20px}}
+  .mari-bg{position:absolute;right:-2px;bottom:-2px;width:28px;height:28px;border-radius:50%;background:#1ecb7b;display:flex;align-items:center;justify-content:center;border:3px solid #0b0f1a;box-shadow:0 4px 12px -2px rgba(30,203,123,.8);animation:mbeat 2.4s ease-in-out infinite}
+  @keyframes mbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .mari-t{display:flex;flex-direction:column;align-items:center}
+  .mari-wm{font-weight:800;font-size:46px;line-height:1;letter-spacing:.5px;display:flex}
+  .mari-tag{font-size:15px;font-weight:700;margin-top:5px}
+  .mari-desc{font-size:10.5px;font-weight:600;letter-spacing:4px;color:#1ecb7b;margin-top:6px}
+  .mari-by{font-size:11px;font-weight:700;margin-top:6px;display:flex;align-items:center;gap:4px}
+  .mari-by .tm{font-size:8px;color:#8b97ad;align-self:flex-start;margin-top:1px}
+  .mari-by .sep{color:#5f6c82;font-weight:500}
+  @keyframes tqv{0%,100%{transform:scaleY(.32)}50%{transform:scaleY(1)}}
+
+  /* CARD */
+  .card{position:relative;z-index:1;background:#fff;color:var(--ink);width:100%;max-width:440px;border-radius:22px;
+    box-shadow:0 30px 70px -24px rgba(0,0,0,.6);overflow:hidden}
+  .prog{display:flex;gap:5px;padding:16px 22px 0}
+  .prog i{flex:1;height:5px;border-radius:3px;background:var(--line);transition:.3s}
+  .prog i.on{background:var(--brand)}
+  .body{padding:22px 26px 28px}
+  h2{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+  .sub{color:var(--ink-soft);font-size:15px;margin-bottom:20px;line-height:1.5}
+  .fld{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;font-size:17px;outline:none;margin-bottom:12px}
+  .fld:focus{border-color:var(--brand)}
+  .cta{width:100%;border:none;cursor:pointer;font-weight:700;font-size:16px;color:#fff;background:var(--brand);
+    padding:15px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s}
+  .cta:hover{background:var(--brand-deep)}
+  .cta[disabled]{opacity:.6;cursor:default}
+  .cta.black{background:#000}.cta.black:hover{background:#1a1a1a}
+  .hint{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:12px}
+  .back{width:100%;background:none;border:none;color:#9aa1b4;font-size:14px;cursor:pointer;margin-top:8px;padding:8px}
+
+  .voices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+  .voice{border:2px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:11px;transition:.15s}
+  .voice.sel{border-color:var(--brand);background:#eef4ff}
+  .voice .av{width:38px;height:38px;border-radius:50%;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .voice b{font-size:15px;display:block}.voice span{font-size:12px;color:var(--ink-soft)}
+
+  .trialbox{border:2px solid var(--brand);background:#eef4ff;border-radius:16px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .trialbox b{font-size:16px}.trialbox span{font-size:13px;color:var(--ink-soft);display:block}
+  .switch{position:relative;width:52px;height:30px;flex-shrink:0}
+  .switch input{opacity:0;width:0;height:0}
+  .slider{position:absolute;inset:0;background:#cbd0dd;border-radius:30px;transition:.25s;cursor:pointer}
+  .slider:before{content:"";position:absolute;height:24px;width:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s}
+  .switch input:checked+.slider{background:#12a56a}
+  .switch input:checked+.slider:before{transform:translateX(22px)}
+  .plans{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+  .plan{border:2px solid var(--line);border-radius:14px;padding:15px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.15s;position:relative}
+  .plan.sel{border-color:var(--brand);background:#eef4ff}
+  .plan .radio{width:20px;height:20px;border-radius:50%;border:2px solid #c2c7d4;flex-shrink:0;margin-right:12px;position:relative}
+  .plan.sel .radio{border-color:var(--brand)}
+  .plan.sel .radio:after{content:"";position:absolute;inset:3px;background:var(--brand);border-radius:50%}
+  .pl{display:flex;align-items:center}.pn b{font-size:16px}.pn span{display:block;font-size:12.5px;color:var(--ink-soft)}
+  .pr{text-align:right}.pr b{font-size:17px}.pr span{display:block;font-size:12px;color:var(--ink-soft)}
+  .save{position:absolute;top:-10px;right:14px;background:#ff7a4d;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .paylabel{text-align:center;font-size:14px;font-weight:600;margin-bottom:14px}
+  .succ{text-align:center}
+  .succ .ok{width:74px;height:74px;border-radius:50%;background:#e6f7ef;color:#12a56a;display:flex;align-items:center;justify-content:center;margin:4px auto 16px;font-size:36px}
+  .fwd{background:#f6f8fc;border:1px dashed var(--brand);border-radius:14px;padding:16px;margin:16px 0}
+  .fwd span{font-size:12px;color:var(--ink-soft);display:block;margin-bottom:4px}.fwd b{font-size:24px;letter-spacing:1px;color:var(--brand-deep)}
+
+  .reassure{position:relative;z-index:1;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:22px;max-width:440px}
+  .reassure div{display:flex;align-items:center;gap:6px;font-size:13px;color:#aeb9cf}
+  .reassure svg{width:15px;height:15px;color:var(--teal)}
+</style>
+</head>
+<body>
+  <div class="brand">
+    <div class="mari-lock">
+      <div class="mari-ow">
+        <span class="mari-ring"></span><span class="mari-ring r2"></span>
+        <div class="mari-orb"><div class="mari-vw"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="mari-bg"><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg></div>
+      </div>
+      <div class="mari-t">
+        <div class="mari-wm"><span class="chrome">M</span><span class="ai">a</span><span class="chrome">r</span><span class="ai">i</span></div>
+        <div class="mari-tag rosso">Geht ran, wenn du nicht kannst.</div>
+        <div class="mari-desc">DEIN TELEFON-ASSISTENT</div>
+        <div class="mari-by"><span class="chrome">by telequest</span><span class="tm">®</span><span class="sep">·</span><span class="chrome">seit 2001</span><span class="flag"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="prog"><i id="p0" class="on"></i><i id="p1"></i><i id="p2"></i></div>
+    <div class="body" id="stage"></div>
+  </div>
+
+  <div class="reassure">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 7 Tage gratis</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> In 2 Minuten live</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Jederzeit kündbar</div>
+  </div>
+
+<script>
+  var wv=document.getElementById('bwave');
+  for(var i=0;i<16;i++){var b=document.createElement('div');b.className='b-bar';
+    var mid=1-Math.abs(i-7.5)/7.5;b.style.height=(4+mid*12+Math.random()*3).toFixed(0)+'px';
+    var d=(0.7+Math.random()*0.8);b.style.animation='tqv '+d.toFixed(2)+'s ease-in-out infinite';
+    b.style.animationDelay=(-Math.random()*d).toFixed(2)+'s';b.style.opacity=(0.5+mid*0.5).toFixed(2);wv.appendChild(b);}
+
+  const VOICES=[
+    {n:"Mari",d:"warm & freundlich",c:"linear-gradient(135deg,#3b3ff0,#8b5cf6)",i:"M"},
+    {n:"Lena",d:"ruhig & klar",c:"linear-gradient(135deg,#0ea5e9,#22d3ee)",i:"L"},
+    {n:"Ben",d:"sachlich & direkt",c:"linear-gradient(135deg,#12a56a,#4ade80)",i:"B"},
+    {n:"Jonas",d:"locker & nahbar",c:"linear-gradient(135deg,#ff7a4d,#fbbf24)",i:"J"}
+  ];
+  let step=0, selVoice=0, selPlan="year", trialOn=false, phone="";
+  const stage=document.getElementById("stage");
+  function prog(){for(let i=0;i<3;i++)document.getElementById("p"+i).classList.toggle("on",i<=step);}
+
+  function render(){
+    prog();
+    if(step===0){
+      stage.innerHTML=`
+        <h2>Kein Anruf bleibt mehr liegen.</h2>
+        <p class="sub">Gib deine Geschäftsnummer ein – Mari geht ab sofort für dich ran, wenn du nicht kannst.</p>
+        <input class="fld" id="ph" type="tel" inputmode="tel" placeholder="z. B. 0664 1234567" value="${phone}">
+        <button class="cta" onclick="next0()">Weiter <span aria-hidden="true">→</span></button>
+        <p class="hint">🔒 Keine Kreditkarte, um zu starten · 7 Tage gratis</p>`;
+      setTimeout(()=>document.getElementById("ph").focus(),40);
+    } else if(step===1){
+      stage.innerHTML=`
+        <h2>Wie soll Mari klingen?</h2>
+        <p class="sub">So begrüßt sie deine Anrufer in deinem Namen.</p>
+        <div class="voices" id="vs"></div>
+        <button class="cta" onclick="step=2;render()">Weiter <span aria-hidden="true">→</span></button>
+        <button class="back" onclick="step=0;render()">Zurück</button>`;
+      const vs=document.getElementById("vs");
+      VOICES.forEach((v,i)=>{const el=document.createElement("div");el.className="voice"+(i===selVoice?" sel":"");
+        el.innerHTML=`<div class="av" style="background:${v.c}">${v.i}</div><div><b>${v.n}</b><span>${v.d}</span></div>`;
+        el.onclick=()=>{selVoice=i;render()};vs.appendChild(el);});
+    } else {
+      const y=selPlan==="year";
+      stage.innerHTML=`
+        <h2>Gratis-Woche starten</h2>
+        <p class="sub">7 Tage kostenlos. Erst danach wird abgebucht – Kündigung jederzeit mit einem Klick.</p>
+        <div class="trialbox"><div><b>7 Tage gratis aktivieren</b><span>Heute 0 € · Erinnerung vor Ablauf</span></div>
+          <label class="switch"><input type="checkbox" ${trialOn?"checked":""} onchange="trialOn=this.checked;render()"><span class="slider"></span></label></div>
+        <div class="plans">
+          <div class="plan ${y?"sel":""}" onclick="selPlan='year';render()"><span class="save">SPARE 67 %</span>
+            <div class="pl"><div class="radio"></div><div class="pn"><b>Jahr</b><span>59 € pro Jahr</span></div></div>
+            <div class="pr"><b>4,95 €</b><span>pro Monat</span></div></div>
+          <div class="plan ${!y?"sel":""}" onclick="selPlan='month';render()">
+            <div class="pl"><div class="radio"></div><div class="pn"><b>Monatlich</b><span>flexibel kündbar</span></div></div>
+            <div class="pr"><b>14,90 €</b><span>pro Monat</span></div></div>
+        </div>
+        <p class="paylabel">${trialOn?"Heute fällig: 0,00 € – danach "+(y?"59 €/Jahr":"14,90 €/Monat"):"Sofort fällig: "+(y?"59 €/Jahr":"14,90 €/Monat")}</p>
+        <button class="cta black" id="pay" onclick="checkout()">
+          <svg width="16" height="19" viewBox="0 0 24 28" fill="currentColor"><path d="M17 0c.1 1.6-.5 3.2-1.5 4.4-1 1.2-2.7 2.1-4.3 2-.2-1.6.6-3.3 1.6-4.4C13.4 1 15.1.1 17 0zM22 20.5c-.5 1.2-.8 1.7-1.4 2.7-1 1.5-2.3 3.3-4 3.3-1.5 0-1.9-1-3.9-1s-2.5 1-3.9 1c-1.7 0-3-1.7-3.9-3.1C2.3 20 1 15 3 11.5c1-1.7 2.8-2.8 4.7-2.8 1.7 0 2.8 1 4.2 1 1.4 0 2.2-1 4.2-1 1.5 0 3.1.8 4.2 2.2-3.7 2-3.1 7.3.5 8.6z"/></svg>
+          ${trialOn?"Gratis-Woche starten":"Jetzt bezahlen"}</button>
+        <p class="hint">Sichere Zahlung über Stripe · Apple Pay · Google Pay · Karte</p>
+        <button class="back" onclick="step=1;render()">Zurück</button>`;
+    }
+  }
+  function next0(){const v=(document.getElementById("ph").value||"").trim();
+    if(v.length<4){document.getElementById("ph").style.borderColor="#e24b4a";return;}
+    phone=v;step=1;render();}
+
+  async function checkout(){
+    const btn=document.getElementById("pay");btn.disabled=true;btn.textContent="Weiterleiten zu Stripe …";
+    try{
+      const res=await fetch("/api/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({plan:selPlan,trial:trialOn,phone:phone,voice:VOICES[selVoice].n})});
+      if(!res.ok) throw new Error();
+      const data=await res.json();
+      if(data.url){window.location=data.url;return;}
+      throw new Error();
+    }catch(e){ success(); }
+  }
+  function success(){
+    prog();
+    stage.innerHTML=`<div class="succ">
+      <div class="ok">✓</div>
+      <h2>${VOICES[selVoice].n} ist aktiv! <span style="font-size:12px;color:#9aa1b4">(Demo)</span></h2>
+      <p class="sub">${trialOn?"Deine Gratis-Woche läuft. ":""}Sobald Stripe verbunden ist, greift hier die echte Zahlung. Leite deine Nummer auf diese Zielnummer um.</p>
+      <div class="fwd"><span>Deine Zielnummer zum Umleiten</span><b>0720 40 50 60</b></div>
+      <button class="cta" onclick="location.href='index.html'">Mehr über Mari erfahren</button>
+    </div>`;
+  }
+  render();
+</script>
+</body>
+</html>
